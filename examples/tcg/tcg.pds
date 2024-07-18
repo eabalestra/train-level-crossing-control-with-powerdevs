@@ -15,6 +15,11 @@ Root-Coordinator
     Path = tcg/controller.h
     Parameters = 
    }
+  Simulator
+   {
+    Path = tcg/gate.h
+    Parameters = 
+   }
   EIC
    {
    }
@@ -24,6 +29,7 @@ Root-Coordinator
   IC
    {
     (0,0);(2,0)
-    (2,0);(1,0)
+    (2,0);(3,0)
+    (3,0);(1,0)
    }
  }

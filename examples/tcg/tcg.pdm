@@ -44,7 +44,7 @@ Coupled
             Description = Saves in a file the number of events received at each port.
             Graphic
                 {
-                Position = -4710 ; -3480
+                Position = -3060 ; -3480
                 Dimension = 720 ; 675
                 Direction = Right
                 Color = 15
@@ -68,6 +68,24 @@ Coupled
                 Dimension = 675 ; 720
                 Direction = Right
                 Color = 15
+                Icon = %tcg%controller.ico
+                }
+            Parameters
+                {
+                }
+            }
+        Atomic
+            {
+            Name = Gate
+            Ports = 1 ; 1
+            Path = tcg/gate.h
+            Description = Atomic DEVS model
+            Graphic
+                {
+                Position = -4680 ; -3510
+                Dimension = 675 ; 720
+                Direction = Right
+                Color = 15
                 Icon = None
                 }
             Parameters
@@ -84,8 +102,15 @@ Coupled
         Line
             {
             Source = Cmp ;  3 ;  1 ; 0
+            Sink = Cmp ;  4 ;  1 ; -1
+            PointX = -5775 ; -5775 ; -4815
+            PointY = -3150 ; -3150 ; -3150
+            }
+        Line
+            {
+            Source = Cmp ;  4 ;  1 ; 0
             Sink = Cmp ;  2 ;  1 ; -1
-            PointX = -5775 ; -5775 ; -4890
+            PointX = -3900 ; -3900 ; -3240
             PointY = -3150 ; -3150 ; -3150
             }
         }

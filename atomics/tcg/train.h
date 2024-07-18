@@ -22,6 +22,9 @@ float u[3], sigma;
 
 // output
 float y;
+//3 in
+//4 aproach
+//5 exit
 
 // parameter
 float kt1;
