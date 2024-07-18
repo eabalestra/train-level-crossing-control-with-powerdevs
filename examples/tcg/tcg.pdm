@@ -1,0 +1,67 @@
+Coupled
+    {
+    Type = Root
+    Name = tcg
+    Ports = 0; 0
+    Description = 
+    Graphic
+        {
+        Position = 0; 0
+        Dimension = 600; 600
+        Direction = Right
+        Color = 15
+        Icon = 
+        Window = 5000; 5000; 5000; 5000
+        }
+    Parameters
+        {
+        }
+    System
+        {
+        Atomic
+            {
+            Name = Train
+            Ports = 1 ; 1
+            Path = tcg/train.h
+            Description = Atomic DEVS model
+            Graphic
+                {
+                Position = -4455 ; -4635
+                Dimension = 675 ; 720
+                Direction = Right
+                Color = 15
+                Icon = %tcg%train-icon.ico
+                }
+            Parameters
+                {
+                }
+            }
+        Atomic
+            {
+            Name = Event Counter0
+            Ports = 1 ; 0
+            Path = sinks/ev_count2.h
+            Description = Saves in a file the number of events received at each port.
+            Graphic
+                {
+                Position = -2460 ; -4605
+                Dimension = 720 ; 675
+                Direction = Right
+                Color = 15
+                Icon = %sinks%coun_ev.bmp
+                }
+            Parameters
+                {
+                File = Str; num_ev.txt ; file name
+                Inputs = Str; %Inputs ; Number of Inputs
+                }
+            }
+        Line
+            {
+            Source = Cmp ;  1 ;  1 ; 0
+            Sink = Cmp ;  2 ;  1 ; -1
+            PointX = -3675 ; -3675 ; -2640
+            PointY = -4275 ; -4275 ; -4275
+            }
+        }
+    }
