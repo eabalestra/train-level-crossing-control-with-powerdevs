@@ -7,7 +7,7 @@ va_start(parameters,t);
 //where:
 //      %Name% is the parameter name
 //	%Type% is the parameter type
-inf = 1e10;
+inf = 1e20;
 
 u[0]=1.0;
 u[1]=0.0;
@@ -16,25 +16,31 @@ u[3]=0.0;
 
 sigma = inf;
 
-y=0;
+y=0.0;
 
-kc1=1;
-kc2=1;
+kc1=1.0;
+kc2=1.0;
 }
 double controller::ta(double t) {
 //This function returns a double.
 return sigma;
 }
 void controller::dint(double t) {
-if (u[1] == 1.0) {
+printLog("INTERNAL TRANSITION\n");
+if (u[1] == 1.0)
+{
+	printLog("PASO A Sc3\n");
 	u[1] = 0.0;
 	u[2] = 1.0;
 }
-else if (u[3] == 1.0){
+else if (u[3] == 1.0)
+{
+	printLog("PASO A Sc1\n");
 	u[3] = 0.0;
 	u[0] = 1.0;
 }
 sigma = inf;
+printLog("\n");
 }
 void controller::dext(Event x, double t) {
 //The input event is in the 'x' variable.
@@ -42,12 +48,12 @@ void controller::dext(Event x, double t) {
 //     'x.value' is the value (pointer to void)
 //     'x.port' is the port number
 //     'e' is the time elapsed since last transition
+printLog("EXTERNAL TRANSITION\n");
+
 float xv;
 xv=*(float*)(x.value);
 
-char buffer[32];
-snprintf(buffer, sizeof(buffer), "%f", xv);
-printLog(buffer);
+printLog("LLEGO: %f\n", xv);
 
 if (u[0] == 1.0 && xv == 4.0) {				// 4 = approach
 	u[0] = 0.0;
@@ -73,6 +79,7 @@ if (u[1] == 1.0) {
 else if (u[3] == 1.0) {	
 	y = 7;	// 7 = raise
 }
+printLog("SACA: %f\n", y);
 return Event(&y,0);
 }
 void controller::exit() {

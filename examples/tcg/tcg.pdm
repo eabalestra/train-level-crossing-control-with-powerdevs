@@ -26,7 +26,7 @@ Coupled
             Description = Atomic DEVS model
             Graphic
                 {
-                Position = -4455 ; -4635
+                Position = -8430 ; -3510
                 Dimension = 675 ; 720
                 Direction = Right
                 Color = 15
@@ -44,7 +44,7 @@ Coupled
             Description = Saves in a file the number of events received at each port.
             Graphic
                 {
-                Position = -2460 ; -4605
+                Position = -4710 ; -3480
                 Dimension = 720 ; 675
                 Direction = Right
                 Color = 15
@@ -56,12 +56,37 @@ Coupled
                 Inputs = Str; %Inputs ; Number of Inputs
                 }
             }
+        Atomic
+            {
+            Name = Controller
+            Ports = 1 ; 1
+            Path = tcg/controller.h
+            Description = Atomic DEVS model
+            Graphic
+                {
+                Position = -6555 ; -3510
+                Dimension = 675 ; 720
+                Direction = Right
+                Color = 15
+                Icon = None
+                }
+            Parameters
+                {
+                }
+            }
         Line
             {
             Source = Cmp ;  1 ;  1 ; 0
+            Sink = Cmp ;  3 ;  1 ; -1
+            PointX = -7650 ; -7650 ; -6690
+            PointY = -3150 ; -3150 ; -3150
+            }
+        Line
+            {
+            Source = Cmp ;  3 ;  1 ; 0
             Sink = Cmp ;  2 ;  1 ; -1
-            PointX = -3675 ; -3675 ; -2640
-            PointY = -4275 ; -4275 ; -4275
+            PointX = -5775 ; -5775 ; -4890
+            PointY = -3150 ; -3150 ; -3150
             }
         }
     }

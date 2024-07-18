@@ -17,7 +17,7 @@ class controller: public Simulator {
 float y;
 
 //states
-float u[2], sigma;
+float u[4], sigma;
 
 //params
 float inf;
