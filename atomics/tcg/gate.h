@@ -14,16 +14,16 @@ class gate: public Simulator {
 // and parameters
 
 //output
-float y;
+double y;
 
 //states
-float u[4], sigma;
+double u[4], sigma;
 
 //params
-float inf;
-float kg1;
-float kg2;
-float kg3;
+double inf;
+double kg1;
+double kg2;
+double kg3;
 public:
 	gate(const char *n): Simulator(n) {};
 	void init(double, ...);

@@ -14,7 +14,7 @@ u[0] = 1.0; // far
 u[1] = 0.0; // near
 u[2] = 0.0; // inside
 
-sigma = 15;
+sigma = 15.0;
 
 y = 0.0;
 
@@ -76,7 +76,7 @@ else if (u[2] == 1.0)
 	y = 5.0;
 }
 
-
+printLog("VALOR DE OUTPUT TRAIN: %f", &y);
 return Event(&y, 0);
 }
 void train::exit() {

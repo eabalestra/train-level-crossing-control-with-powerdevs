@@ -18,19 +18,19 @@ class train: public Simulator {
 // u[1] = near
 // u[2] = inside
 // sigma = time advance
-float u[3], sigma;
+double u[3], sigma;
 
 // output
-float y;
+double y;
 //3 in
 //4 aproach
 //5 exit
 
 // parameter
-float kt1;
-float kt2;
+double kt1;
+double kt2;
 
-float inf;
+double inf;
 public:
 	train(const char *n): Simulator(n) {};
 	void init(double, ...);

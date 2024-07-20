@@ -2,13 +2,13 @@ Root-Coordinator
  {
   Simulator
    {
-    Path = tcg/train.h
-    Parameters = 
+    Path = sinks/gnuplot.h
+    Parameters = 3.000000e+00,"set xrange [0:%tf] @ set grid @ set title 'Plot'","with lines title 'Train'","with lines title 'Controller'","with lines title 'Gate'","",""
    }
   Simulator
    {
-    Path = sinks/ev_count2.h
-    Parameters = "num_ev.txt",1.000000e+00
+    Path = tcg/train.h
+    Parameters = 
    }
   Simulator
    {
@@ -28,8 +28,10 @@ Root-Coordinator
    }
   IC
    {
-    (0,0);(2,0)
+    (1,0);(2,0)
+    (1,0);(0,0)
+    (3,0);(0,2)
+    (2,0);(0,1)
     (2,0);(3,0)
-    (3,0);(1,0)
    }
  }

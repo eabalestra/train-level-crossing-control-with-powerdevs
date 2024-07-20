@@ -14,15 +14,15 @@ class controller: public Simulator {
 // and parameters
 
 //output
-float y;
+double y;
 
 //states
-float u[4], sigma;
+double u[4], sigma;
 
 //params
-float inf;
-float kc1;
-float kc2;
+double inf;
+double kc1;
+double kc2;
 public:
 	controller(const char *n): Simulator(n) {};
 	void init(double, ...);

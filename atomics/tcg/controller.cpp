@@ -50,8 +50,8 @@ void controller::dext(Event x, double t) {
 //     'e' is the time elapsed since last transition
 printLog("EXTERNAL TRANSITION\n");
 
-float xv;
-xv=*(float*)(x.value);
+double xv;
+xv=*(double*)(x.value);
 
 printLog("LLEGO: %f\n", xv);
 
@@ -80,6 +80,7 @@ else if (u[3] == 1.0) {
 	y = 7;	// 7 = raise
 }
 printLog("SACA: %f\n", y);
+printLog("VALOR DE OUTPUT CONTROLLER: %f\n", &y);
 return Event(&y,0);
 }
 void controller::exit() {
