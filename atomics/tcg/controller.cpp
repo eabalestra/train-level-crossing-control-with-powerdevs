@@ -49,13 +49,14 @@ void controller::dext(Event x, double t) {
 double xv;
 xv=*(double*)(x.value);
 
-
-if (u[0] == 1.0 && xv == 1.0) {				// 1 = aproach
+if (u[0] == 1.0 && xv == 1.0) // Train is approaching (1)
+{
 	u[0] = 0.0;
 	u[1] = 1.0;
 	sigma = kc1;
 }
-else if (u[2] == 1.0 && xv == 3.0) {	// 3 = exit
+else if (u[2] == 1.0 && xv == 3.0) // Train exits (3)
+{
 	u[2] = 0.0;
 	u[3] = 1.0;
 	sigma = kc2;

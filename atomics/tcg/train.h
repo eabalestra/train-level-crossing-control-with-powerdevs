@@ -32,6 +32,8 @@ double kt2;
 
 double inf;
 
+bool isTrainPresent;
+
 public:
 	train(const char *n): Simulator(n) {};
 	void init(double, ...);

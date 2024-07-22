@@ -69,11 +69,11 @@ Event gate::lambda(double t) {
 
 if (u[1] == 1.0) {
 	y = 1;	// 1 = down
-	printLog("BARRERA BAJA\n");
+	printLog("BARRERA BAJA en %f\n",getTime());
 }
 else if (u[3] == 1.0) {	
 	y = 2;	// 2 = up
-	printLog("BARRERA ARRIBA\n");
+	printLog("BARRERA ARRIBA en %f \n",getTime());
 	printLog("\n\n");
 }
 return Event(&y,0);

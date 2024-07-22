@@ -51,7 +51,7 @@ Coupled
             Description = Atomic DEVS model
             Graphic
                 {
-                Position = -12855 ; -1710
+                Position = -13155 ; -1710
                 Dimension = 675 ; 720
                 Direction = Right
                 Color = 15
@@ -69,7 +69,7 @@ Coupled
             Description = Atomic DEVS model
             Graphic
                 {
-                Position = -11205 ; -1260
+                Position = -10530 ; -1260
                 Dimension = 675 ; 720
                 Direction = Right
                 Color = 15
@@ -87,7 +87,7 @@ Coupled
             Description = Atomic DEVS model
             Graphic
                 {
-                Position = -8505 ; -1185
+                Position = -8730 ; -1260
                 Dimension = 675 ; 720
                 Direction = Right
                 Color = 15
@@ -105,7 +105,7 @@ Coupled
             Description = Normal Random Generator
             Graphic
                 {
-                Position = -15330 ; -1680
+                Position = -14655 ; -1680
                 Dimension = 675 ; 675
                 Direction = Right
                 Color = 15
@@ -123,29 +123,36 @@ Coupled
             {
             Source = Cmp ;  3 ;  1 ; 0
             Sink = Cmp ;  4 ;  1 ; -1
-            PointX = -10425 ; -8640 ; -8640
-            PointY = -900 ; -900 ; -825
+            PointX = -9750 ; -9750 ; -8865
+            PointY = -900 ; -900 ; -900
             }
         Line
             {
             Source = Cmp ;  2 ;  1 ; 0
             Sink = Cmp ;  3 ;  1 ; -1
-            PointX = -12075 ; -11340 ; -11340
-            PointY = -1350 ; -1350 ; -900
+            PointX = -12375 ; -11475 ; -11475 ; -10665
+            PointY = -1350 ; -1350 ; -900 ; -900
             }
         Line
             {
             Source = Cmp ;  1 ;  1 ; -1
             Sink = Cmp ;  2 ;  1 ; 0
-            PointX = -6765 ; -12075 ; -12075
-            PointY = -1800 ; -1800 ; -1350
+            PointX = -6765 ; -11925 ; -11925 ; -12375
+            PointY = -1800 ; -1800 ; -1350 ; -1350
             }
         Line
             {
             Source = Cmp ;  4 ;  1 ; 0
             Sink = Cmp ;  1 ;  2 ; -1
-            PointX = -7725 ; -6765 ; -6765
-            PointY = -825 ; -825 ; -1500
+            PointX = -7950 ; -7050 ; -7050 ; -6765
+            PointY = -900 ; -900 ; -1500 ; -1500
+            }
+        Line
+            {
+            Source = Cmp ;  5 ;  1 ; 0
+            Sink = Cmp ;  2 ;  1 ; -1
+            PointX = -13875 ; -13875 ; -13290
+            PointY = -1350 ; -1350 ; -1350
             }
         }
     }
