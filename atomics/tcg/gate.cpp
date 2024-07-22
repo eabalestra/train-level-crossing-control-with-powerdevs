@@ -27,21 +27,17 @@ double gate::ta(double t) {
 return sigma;
 }
 void gate::dint(double t) {
-printLog("INTERNAL TRANSITION\n");
 if (u[1] == 1.0) // if state is lowering
 {
 	u[1] = 0.0;
 	u[2] = 1.0;
-	printLog("PASA A CLOSED\n"); 
 }
 else if (u[3] == 1.0)
 {
 	u[3] = 0.0;
 	u[0] = 1.0;
-	printLog("PASA A OPEN\n");
 }
 sigma = inf;
-printLog("\n\n");
 }
 void gate::dext(Event x, double t) {
 //The input event is in the 'x' variable.
@@ -49,10 +45,8 @@ void gate::dext(Event x, double t) {
 //     'x.value' is the value (pointer to void)
 //     'x.port' is the port number
 //     'e' is the time elapsed since last transition
-printLog("EXTERNAL TRANSITION\n");
 double xv;
 xv=*(double*)(x.value);
-printLog("LLEGO UN: %f\n", xv);
 if (u[0] == 1.0 && xv == 1.0) // 1 = lower
 {				
 	u[0] = 0.0;
@@ -75,12 +69,13 @@ Event gate::lambda(double t) {
 
 if (u[1] == 1.0) {
 	y = 1;	// 1 = down
+	printLog("BARRERA BAJA\n");
 }
 else if (u[3] == 1.0) {	
 	y = 2;	// 2 = up
+	printLog("BARRERA ARRIBA\n");
+	printLog("\n\n");
 }
-printLog("SACA UN %f\n",y);
-printLog("VALOR DE OUTPUT GATE: %f", &y);
 return Event(&y,0);
 }
 void gate::exit() {

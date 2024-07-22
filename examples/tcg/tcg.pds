@@ -3,7 +3,7 @@ Root-Coordinator
   Simulator
    {
     Path = sinks/gnuplot.h
-    Parameters = 3.000000e+00,"set xrange [0:%tf] @ set grid @ set title 'Plot'","with lines title 'Train'","with lines title 'Controller'","with lines title 'Gate'","",""
+    Parameters = 2.000000e+00,"set xrange [0:%tf] @ set grid @ set title 'Plot'","with lines title 'Train'","with lines title 'Gate'","","",""
    }
   Simulator
    {
@@ -33,11 +33,9 @@ Root-Coordinator
    }
   IC
    {
+    (2,0);(3,0)
     (1,0);(2,0)
     (1,0);(0,0)
-    (3,0);(0,2)
-    (4,0);(1,0)
-    (2,0);(0,1)
-    (2,0);(3,0)
+    (3,0);(0,1)
    }
  }

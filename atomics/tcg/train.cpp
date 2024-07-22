@@ -14,12 +14,13 @@ u[0] = 1.0; // far
 u[1] = 0.0; // near
 u[2] = 0.0; // inside
 
-sigma = inf;
+sigma = 15.0;
 
 y = 0.0;
 
 kt1 = 2.0;
 kt2 = 5.0;
+
 }
 double train::ta(double t) {
 //This function returns a double.
@@ -42,7 +43,7 @@ else if (u[2] == 1.0)
 {
 	u[0] = 1.0;
 	u[2] = 0.0;
-	sigma = inf;
+	sigma = 15.0;
 }
 }
 void train::dext(Event x, double t) {
@@ -52,15 +53,16 @@ void train::dext(Event x, double t) {
 //     'x.port' is the port number
 //     'e' is the time elapsed since last transition
 
-double xv;
-xv=*(double*)(x.value);
+//double xv;
+//xv=*(double*)(x.value);
 
-if (xv < 0) {
-	xv = xv * -1;
-}
+//if (xv < 0) {
+//	xv = xv * -1;
+//}
 
-printLog("LLEGO A TRAIN: %f", xv);
-sigma = xv;
+
+//sigma = xv;
+
 }
 Event train::lambda(double t) {
 //This function returns an Event:
@@ -71,14 +73,17 @@ Event train::lambda(double t) {
 
 if (u[0] == 1.0) // aproach
 {
+	printLog("TREN ACERCANDOSE\n");
 	y = 1.0;
 }
 else if (u[1] == 1.0) // in
 {
+	printLog("TREN IN\n");
 	y = 2.0;
 }
 else if (u[2] == 1.0) // exit
 {
+	printLog("TREN EXIT\n");
 	y = 3.0;
 }
 

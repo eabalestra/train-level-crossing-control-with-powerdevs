@@ -26,21 +26,18 @@ double controller::ta(double t) {
 return sigma;
 }
 void controller::dint(double t) {
-printLog("INTERNAL TRANSITION\n");
 if (u[1] == 1.0)
 {
-	printLog("PASO A Sc3\n");
 	u[1] = 0.0;
 	u[2] = 1.0;
 }
 else if (u[3] == 1.0)
 {
-	printLog("PASO A Sc1\n");
 	u[3] = 0.0;
 	u[0] = 1.0;
 }
 sigma = inf;
-printLog("\n");
+
 }
 void controller::dext(Event x, double t) {
 //The input event is in the 'x' variable.
@@ -48,12 +45,10 @@ void controller::dext(Event x, double t) {
 //     'x.value' is the value (pointer to void)
 //     'x.port' is the port number
 //     'e' is the time elapsed since last transition
-printLog("EXTERNAL TRANSITION\n");
 
 double xv;
 xv=*(double*)(x.value);
 
-printLog("LLEGO: %f\n", xv);
 
 if (u[0] == 1.0 && xv == 1.0) {				// 1 = aproach
 	u[0] = 0.0;
@@ -79,8 +74,6 @@ if (u[1] == 1.0) {
 else if (u[3] == 1.0) {	
 	y = 2;	// 2 = raise
 }
-printLog("SACA: %f\n", y);
-printLog("VALOR DE OUTPUT CONTROLLER: %f\n", &y);
 return Event(&y,0);
 }
 void controller::exit() {

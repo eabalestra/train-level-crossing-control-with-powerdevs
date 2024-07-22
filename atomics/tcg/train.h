@@ -31,6 +31,7 @@ double kt1;
 double kt2;
 
 double inf;
+
 public:
 	train(const char *n): Simulator(n) {};
 	void init(double, ...);
