@@ -14,6 +14,8 @@ class gate: public Simulator {
 // and parameters
 
 //output
+// 1 is down
+// 2 is up
 double y;
 
 //states

@@ -20,7 +20,7 @@ Coupled
         {
         Atomic
             {
-            Name = GnuPlot0
+            Name = GnuPlot
             Ports = 3 ; 0
             Path = sinks/gnuplot.h
             Description = Plot input signal using GnuPlot
@@ -45,13 +45,13 @@ Coupled
             }
         Atomic
             {
-            Name = Train0
+            Name = Train
             Ports = 1 ; 1
             Path = tcg/train.h
             Description = Atomic DEVS model
             Graphic
                 {
-                Position = -13830 ; -1710
+                Position = -13980 ; -1710
                 Dimension = 675 ; 720
                 Direction = Right
                 Color = 15
@@ -63,7 +63,7 @@ Coupled
             }
         Atomic
             {
-            Name = Controller0
+            Name = Controller
             Ports = 1 ; 1
             Path = tcg/controller.h
             Description = Atomic DEVS model
@@ -81,7 +81,7 @@ Coupled
             }
         Atomic
             {
-            Name = Gate0
+            Name = Gate
             Ports = 1 ; 1
             Path = tcg/gate.h
             Description = Atomic DEVS model
@@ -97,46 +97,68 @@ Coupled
                 {
                 }
             }
+        Atomic
+            {
+            Name = NRGen0
+            Ports = 0 ; 1
+            Path = random/normal_gen.h
+            Description = Normal Random Generator
+            Graphic
+                {
+                Position = -16005 ; -1680
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = %sources%nrgen.svg
+                }
+            Parameters
+                {
+                mean = Str; 0 ; Mean Value
+                variance = Str; 1 ; Variance
+                T = Str; 1 ; Period
+                Random seed = Str;  ; an integer or empty string for a random seed
+                }
+            }
         Point
             {
             ConectedLines = 1 ; 4 ; 5
             ConectedExtrems = Org ; Org ; Org
-            Position = -10500 ; -2700
+            Position = -10125 ; -2700
             }
         Line
             {
             Source = Cmp ;  3 ;  1 ; 0
             Sink = Pnt ;  1 ; -1 ; 0
-            PointX = -10575 ; -10575 ; -10500
+            PointX = -10575 ; -10575 ; -10125
             PointY = -2700 ; -2700 ; -2700
             }
         Line
             {
             Source = Cmp ;  2 ;  1 ; 0
             Sink = Cmp ;  3 ;  1 ; -1
-            PointX = -13050 ; -11775 ; -11775 ; -11490
+            PointX = -13200 ; -11775 ; -11775 ; -11490
             PointY = -1350 ; -1350 ; -2700 ; -2700
             }
         Line
             {
             Source = Cmp ;  1 ;  1 ; -1
             Sink = Cmp ;  2 ;  1 ; 0
-            PointX = -7065 ; -13050 ; -13050
-            PointY = -1050 ; -1050 ; -1350
+            PointX = -7065 ; -12300 ; -12300 ; -13200
+            PointY = -1050 ; -1050 ; -1350 ; -1350
             }
         Line
             {
             Source = Cmp ;  1 ;  2 ; -1
             Sink = Pnt ;  1 ; -1 ; 0
-            PointX = -7065 ; -9600 ; -9600 ; -10500
-            PointY = -900 ; -900 ; -2700 ; -2700
+            PointX = -7065 ; -7065 ; -9600 ; -9600 ; -10125
+            PointY = -900 ; -900 ; -900 ; -2700 ; -2700
             }
         Line
             {
             Source = Pnt ;  1 ; -1 ; 0
             Sink = Cmp ;  4 ;  1 ; -1
-            PointX = -10500 ; -10350 ; -10350 ; -9240
-            PointY = -2700 ; -2700 ; -4275 ; -4275
+            PointX = -10125 ; -10125 ; -9240
+            PointY = -2700 ; -4275 ; -4275
             }
         Line
             {
@@ -144,6 +166,13 @@ Coupled
             Sink = Cmp ;  4 ;  1 ; 0
             PointX = -7065 ; -8325 ; -8325
             PointY = -675 ; -675 ; -4275
+            }
+        Line
+            {
+            Source = Cmp ;  5 ;  1 ; 0
+            Sink = Cmp ;  2 ;  1 ; -1
+            PointX = -15225 ; -15225 ; -14115
+            PointY = -1350 ; -1350 ; -1350
             }
         }
     }

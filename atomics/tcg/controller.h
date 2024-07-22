@@ -14,6 +14,8 @@ class controller: public Simulator {
 // and parameters
 
 //output
+// 1 is lower
+// 2 is raise
 double y;
 
 //states

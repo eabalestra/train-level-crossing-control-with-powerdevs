@@ -53,13 +53,13 @@ printLog("EXTERNAL TRANSITION\n");
 double xv;
 xv=*(double*)(x.value);
 printLog("LLEGO UN: %f\n", xv);
-if (u[0] == 1.0 && xv == 6.0) // 6 = lower
+if (u[0] == 1.0 && xv == 1.0) // 1 = lower
 {				
 	u[0] = 0.0;
 	u[1] = 1.0;
 	sigma = kg1;
 }
-else if (u[2] == 1.0 && xv == 7.0) // 7 = raise
+else if (u[2] == 1.0 && xv == 2.0) // 2 = raise
 {	
 	u[2] = 0.0;
 	u[3] = 1.0;
@@ -74,10 +74,10 @@ Event gate::lambda(double t) {
 //     %NroPort% is the port number (from 0 to n-1)
 
 if (u[1] == 1.0) {
-	y = 8;	//  = down
+	y = 1;	// 1 = down
 }
 else if (u[3] == 1.0) {	
-	y = 9;	//  = up
+	y = 2;	// 2 = up
 }
 printLog("SACA UN %f\n",y);
 printLog("VALOR DE OUTPUT GATE: %f", &y);

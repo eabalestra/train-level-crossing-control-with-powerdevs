@@ -55,12 +55,12 @@ xv=*(double*)(x.value);
 
 printLog("LLEGO: %f\n", xv);
 
-if (u[0] == 1.0 && xv == 4.0) {				// 4 = approach
+if (u[0] == 1.0 && xv == 1.0) {				// 1 = aproach
 	u[0] = 0.0;
 	u[1] = 1.0;
 	sigma = kc1;
 }
-else if (u[2] == 1.0 && xv == 5.0) {	// 5 = exit
+else if (u[2] == 1.0 && xv == 3.0) {	// 3 = exit
 	u[2] = 0.0;
 	u[3] = 1.0;
 	sigma = kc2;
@@ -74,10 +74,10 @@ Event controller::lambda(double t) {
 //     %NroPort% is the port number (from 0 to n-1)
 
 if (u[1] == 1.0) {
-	y = 6;	// 6 = lower
+	y = 1;	// 1 = lower
 }
 else if (u[3] == 1.0) {	
-	y = 7;	// 7 = raise
+	y = 2;	// 2 = raise
 }
 printLog("SACA: %f\n", y);
 printLog("VALOR DE OUTPUT CONTROLLER: %f\n", &y);

@@ -22,9 +22,9 @@ double u[3], sigma;
 
 // output
 double y;
-//3 in
-//4 aproach
-//5 exit
+//1 aproach
+//2 in
+//3 exit
 
 // parameter
 double kt1;
