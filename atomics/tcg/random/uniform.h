@@ -1,7 +1,7 @@
 #ifndef UNIFORM_H
 #define UNIFORM_H
 
-#include "randomc.h"
+#include "random/lib/randomc.h"
 
 class UniformDistribution
 {

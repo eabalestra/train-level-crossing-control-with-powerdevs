@@ -1,4 +1,4 @@
-//CPP:random/lib/uniform.cpp
+//CPP:tcg/random/uniform.cpp
 //CPP:tcg/gate.cpp
 #if !defined gate_h
 #define gate_h
@@ -7,7 +7,7 @@
 #include "event.h"
 #include "stdarg.h"
 
-#include "random/lib/uniform.h"
+#include "tcg/random/uniform.h"
 
 
 class gate: public Simulator { 

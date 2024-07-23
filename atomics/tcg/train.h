@@ -1,4 +1,4 @@
-//CPP:random/lib/uniform.cpp
+//CPP:tcg/random/uniform.cpp
 //CPP:tcg/train.cpp
 #if !defined train_h
 #define train_h
@@ -7,7 +7,7 @@
 #include "event.h"
 #include "stdarg.h"
 
-#include "random/lib/uniform.h"
+#include "tcg/random/uniform.h"
 
 
 class train: public Simulator { 

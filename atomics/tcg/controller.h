@@ -1,4 +1,4 @@
-//CPP:random/lib/uniform.cpp
+//CPP:tcg/random/uniform.cpp
 //CPP:tcg/controller.cpp
 #if !defined controller_h
 #define controller_h
@@ -7,7 +7,7 @@
 #include "event.h"
 #include "stdarg.h"
 
-#include "random/lib/uniform.h"
+#include "tcg/random/uniform.h"
 
 
 class controller: public Simulator { 
