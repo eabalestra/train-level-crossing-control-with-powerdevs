@@ -20,6 +20,11 @@ y=0.0;
 
 kc1=1.0;
 kc2=1.0;
+
+char *fvar = va_arg(parameters, char*);
+int seed = (strlen(fvar) == 0 ? (int)time(0) + rand() : getScilabVar(fvar)); // random seed
+du = new UniformDistribution(seed);
+
 }
 double controller::ta(double t) {
 //This function returns a double.
@@ -53,14 +58,18 @@ if (u[0] == 1.0 && xv == 1.0) // Train is approaching (1)
 {
 	u[0] = 0.0;
 	u[1] = 1.0;
-	sigma = kc1;
+	sigma = du->genUniform(0.0, kc1);
+	printLog("CONTROLLER - SC2 will_be: %f\n", sigma);
 }
 else if (u[2] == 1.0 && xv == 3.0) // Train exits (3)
 {
 	u[2] = 0.0;
 	u[3] = 1.0;
-	sigma = kc2;
+	sigma = du->genUniform(0.0, kc2);
+	printLog("CONTROLLER - SC4 will_be %f\n", sigma);
 }
+
+
 }
 Event controller::lambda(double t) {
 //This function returns an Event:
@@ -71,9 +80,11 @@ Event controller::lambda(double t) {
 
 if (u[1] == 1.0) {
 	y = 1;	// 1 = lower
+	printLog("CONTROLLER - Lower!. c_time: %f\n", getTime());
 }
 else if (u[3] == 1.0) {	
 	y = 2;	// 2 = raise
+	printLog("CONTROLLER - Raise!. c_time: %f\n", getTime());
 }
 return Event(&y,0);
 }

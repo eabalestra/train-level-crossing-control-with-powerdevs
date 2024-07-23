@@ -1,3 +1,4 @@
+//CPP:random/lib/uniform.cpp
 //CPP:tcg/gate.cpp
 #if !defined gate_h
 #define gate_h
@@ -6,6 +7,7 @@
 #include "event.h"
 #include "stdarg.h"
 
+#include "random/lib/uniform.h"
 
 
 class gate: public Simulator { 
@@ -30,6 +32,8 @@ double inf;
 double kg1;
 double kg2;
 double kg3;
+
+UniformDistribution* du;
 public:
 	gate(const char *n): Simulator(n) {};
 	void init(double, ...);

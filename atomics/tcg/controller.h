@@ -1,3 +1,4 @@
+//CPP:random/lib/uniform.cpp
 //CPP:tcg/controller.cpp
 #if !defined controller_h
 #define controller_h
@@ -6,6 +7,7 @@
 #include "event.h"
 #include "stdarg.h"
 
+#include "random/lib/uniform.h"
 
 
 class controller: public Simulator { 
@@ -29,6 +31,9 @@ double u[4], sigma;
 double inf;
 double kc1;
 double kc2;
+UniformDistribution* du;
+
+
 public:
 	controller(const char *n): Simulator(n) {};
 	void init(double, ...);

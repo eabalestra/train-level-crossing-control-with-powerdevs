@@ -22,6 +22,10 @@ y = 0.0;
 kt1 = 2.0;
 kt2 = 5.0;
 
+char *fvar = va_arg(parameters, char*);
+int seed = (strlen(fvar) == 0 ? (int)time(0) + rand() : getScilabVar(fvar)); // random seed
+du = new UniformDistribution(seed);
+
 }
 double train::ta(double t) {
 //This function returns a double.
@@ -32,19 +36,24 @@ if (u[0] == 1.0)
 {
 	u[1] = 1.0;
 	u[0] = 0.0;
-	sigma = kt2 - kt1;
+//	sigma = kt2 - kt1;
+	sigma = du->genUniform(kt1, kt2);
+	printLog("TRAIN - Near. will_be: %f\n", sigma);
 }
 else if (u[1] == 1.0)
 {
 	u[1] = 0.0;
 	u[2] = 1.0;
-	sigma = kt2;
+	//sigma = kt2;
+	sigma = du->genUniform(0.0, kt2);
+	printLog("TRAIN - Inside. will_be: %f\n", sigma);
 }
 else if (u[2] == 1.0)
 {
 	u[0] = 1.0;
 	u[2] = 0.0;
 	sigma = inf;
+	printLog("TRAIN - Far. will_be: inf\n");
 	isTrainPresent = false;
 }
 }
@@ -67,6 +76,7 @@ if (!isTrainPresent)
 
 	isTrainPresent = true;
 	sigma = xv;
+	printLog("TRAIN - Is Coming. in: %f\n", sigma);
 }
 else
 {
@@ -82,17 +92,17 @@ Event train::lambda(double t) {
 
 if (u[0] == 1.0) // aproach
 {
-	printLog("TREN ACERCANDOSE en %f\n", getTime());
+	printLog("TRAIN - Approach! c_time: %f\n",getTime());
 	y = 1.0;
 }
 else if (u[1] == 1.0) // in
 {
-	printLog("TREN IN en %f\n",getTime());
+	printLog("TRAIN - In! c_time: %f\n",getTime());
 	y = 2.0;
 }
 else if (u[2] == 1.0) // exit
 {
-	printLog("TREN EXIT en %f\n",getTime());
+	printLog("TRAIN - Exit! c_time: %f\n",getTime());
 	y = 3.0;
 }
 

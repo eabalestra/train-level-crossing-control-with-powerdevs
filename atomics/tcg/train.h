@@ -1,3 +1,4 @@
+//CPP:random/lib/uniform.cpp
 //CPP:tcg/train.cpp
 #if !defined train_h
 #define train_h
@@ -6,6 +7,7 @@
 #include "event.h"
 #include "stdarg.h"
 
+#include "random/lib/uniform.h"
 
 
 class train: public Simulator { 
@@ -33,6 +35,7 @@ double kt2;
 double inf;
 
 bool isTrainPresent;
+UniformDistribution* du;
 
 public:
 	train(const char *n): Simulator(n) {};

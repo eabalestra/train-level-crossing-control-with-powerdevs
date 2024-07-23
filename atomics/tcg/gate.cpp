@@ -21,6 +21,11 @@ y = 0.0;
 kg1 = 1.0;
 kg2 = 1.0;
 kg3 = 2.0;
+
+char *fvar = va_arg(parameters, char*);
+int seed = (strlen(fvar) == 0 ? (int)time(0) + rand() : getScilabVar(fvar)); // random seed
+du = new UniformDistribution(seed);
+
 }
 double gate::ta(double t) {
 //This function returns a double.
@@ -51,13 +56,17 @@ if (u[0] == 1.0 && xv == 1.0) // 1 = lower
 {				
 	u[0] = 0.0;
 	u[1] = 1.0;
-	sigma = kg1;
+	//sigma = kg1;
+	sigma = du->genUniform(0.0, kg1);
+	printLog("GATE - Lowering. will_be: %f\n", sigma);
 }
 else if (u[2] == 1.0 && xv == 2.0) // 2 = raise
 {	
 	u[2] = 0.0;
 	u[3] = 1.0;
-	sigma = kg3 - kg2;
+	//sigma = kg3 - kg2;
+	sigma = du->genUniform(kg3, kg2);
+	printLog("GATE - Raising. will_be: %f\n", sigma);
 }
 }
 Event gate::lambda(double t) {
@@ -69,11 +78,12 @@ Event gate::lambda(double t) {
 
 if (u[1] == 1.0) {
 	y = 1;	// 1 = down
-	printLog("BARRERA BAJA en %f\n",getTime());
+	printLog("GATE - Down!. c_time: %f\n",getTime());
+
 }
 else if (u[3] == 1.0) {	
 	y = 2;	// 2 = up
-	printLog("BARRERA ARRIBA en %f \n",getTime());
+	printLog("GATE - Up!. c_time: %f\n",getTime());
 	printLog("\n\n");
 }
 return Event(&y,0);
