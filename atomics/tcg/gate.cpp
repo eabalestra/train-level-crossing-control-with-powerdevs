@@ -22,8 +22,7 @@ kg1 = 1.0;
 kg2 = 1.0;
 kg3 = 2.0;
 
-char *fvar = va_arg(parameters, char*);
-int seed = (strlen(fvar) == 0 ? (int)time(0) + rand() : getScilabVar(fvar)); // random seed
+int seed = 445566;
 du = new UniformDistribution(seed);
 
 }
@@ -58,15 +57,15 @@ if (u[0] == 1.0 && xv == 1.0) // 1 = lower
 	u[1] = 1.0;
 	//sigma = kg1;
 	sigma = du->genUniform(0.0, kg1);
-	printLog("GATE - Lowering. will_be: %f\n", sigma);
+	printLog("GATE is Lowering. will_be: %f\n", sigma);
 }
 else if (u[2] == 1.0 && xv == 2.0) // 2 = raise
 {	
 	u[2] = 0.0;
 	u[3] = 1.0;
 	//sigma = kg3 - kg2;
-	sigma = du->genUniform(kg3, kg2);
-	printLog("GATE - Raising. will_be: %f\n", sigma);
+	sigma = du->genUniform(kg2, kg3);
+	printLog("GATE is Raising. will_be: %f\n", sigma);
 }
 }
 Event gate::lambda(double t) {

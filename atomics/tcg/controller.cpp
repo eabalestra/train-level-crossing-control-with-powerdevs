@@ -1,6 +1,6 @@
 #include "controller.h"
 void controller::init(double t,...) {
-//The 'parameters' variable contains the parameters transferred from the editor.
+	//The 'parameters' variable contains the parameters transferred from the editor.
 va_list parameters;
 va_start(parameters,t);
 //To get a parameter: %Name% = va_arg(parameters,%Type%)
@@ -21,8 +21,7 @@ y=0.0;
 kc1=1.0;
 kc2=1.0;
 
-char *fvar = va_arg(parameters, char*);
-int seed = (strlen(fvar) == 0 ? (int)time(0) + rand() : getScilabVar(fvar)); // random seed
+int seed = 314;
 du = new UniformDistribution(seed);
 
 }
@@ -59,14 +58,14 @@ if (u[0] == 1.0 && xv == 1.0) // Train is approaching (1)
 	u[0] = 0.0;
 	u[1] = 1.0;
 	sigma = du->genUniform(0.0, kc1);
-	printLog("CONTROLLER - SC2 will_be: %f\n", sigma);
+	printLog("CONTROLLER is SC2 will_be: %f\n", sigma);
 }
 else if (u[2] == 1.0 && xv == 3.0) // Train exits (3)
 {
 	u[2] = 0.0;
 	u[3] = 1.0;
 	sigma = du->genUniform(0.0, kc2);
-	printLog("CONTROLLER - SC4 will_be %f\n", sigma);
+	printLog("CONTROLLER is SC4 will_be %f\n", sigma);
 }
 
 

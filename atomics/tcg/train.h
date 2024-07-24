@@ -20,7 +20,8 @@ class train: public Simulator {
 // u[1] = near
 // u[2] = inside
 // sigma = time advance
-double u[3], sigma;
+double u[3];
+double sigma;
 
 // output
 double y;

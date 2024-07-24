@@ -3,7 +3,7 @@ Root-Coordinator
   Simulator
    {
     Path = sinks/gnuplot.h
-    Parameters = 2.000000e+00,"set xrange [0:%tf] @ set grid @ set title 'Plot'","with lines title 'Train'","with lines title 'Gate'","","",""
+    Parameters = 2.000000e+00,"set xrange [0:%tf] @ set grid @ set title 'Plot'","with linespoints title 'Train' lt 1 lc rgb 'blue'","with linespoints title 'Gate' lt 2 lc rgb 'green'","","",""
    }
   Simulator
    {
@@ -23,7 +23,7 @@ Root-Coordinator
   Simulator
    {
     Path = random/normal_gen.h
-    Parameters = "0","1","1",""
+    Parameters = "0","1","10",""
    }
   EIC
    {
