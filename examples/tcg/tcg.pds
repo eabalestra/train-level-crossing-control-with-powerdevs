@@ -28,7 +28,7 @@ Root-Coordinator
   Simulator
    {
     Path = sinks\to_disk.h
-    Parameters = "output.csv"
+    Parameters = "output-train.csv"
    }
   EIC
    {
