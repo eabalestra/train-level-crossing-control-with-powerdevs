@@ -23,11 +23,7 @@ class controller: public Simulator {
 double y;
 
 //states
-// u[0] is Sc1
-// u[1] is Sc2
-// u[2] is Sc3
-// u[3] is Sc4
-double u[4], sigma;
+double state, sigma;
 
 //params
 double inf;

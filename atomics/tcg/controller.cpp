@@ -19,10 +19,7 @@ fvar = va_arg(parameters,char*);
 int seed = (strlen(fvar)==0 ? (int)time(0)+rand() : getScilabVar(fvar)); // random seed
 
 inf = INF;
-u[0]=1.0;
-u[1]=0.0;
-u[2]=0.0;
-u[3]=0.0;
+state = SC1;
 sigma = inf;
 y = 0.0;
 du = new UniformDistribution(seed);
@@ -33,15 +30,13 @@ double controller::ta(double t) {
 return sigma;
 }
 void controller::dint(double t) {
-if (u[1] == 1.0)
+if (state == SC2)
 {
-	u[1] = 0.0;
-	u[2] = 1.0;
+	state = SC3;
 }
-else if (u[3] == 1.0)
+else if (state == SC4)
 {
-	u[3] = 0.0;
-	u[0] = 1.0;
+	state = SC1;
 }
 sigma = inf;
 
@@ -52,21 +47,17 @@ void controller::dext(Event x, double t) {
 //     'x.value' is the value (pointer to void)
 //     'x.port' is the port number
 //     'e' is the time elapsed since last transition
-
 double xv;
 xv=*(double*)(x.value);
-
-if (u[0] == 1.0 && xv == 1.0) // Train is approaching (1)
+if (state == SC1 && xv == APPROACH) // Train is approaching (1)
 {
-	u[0] = 0.0;
-	u[1] = 1.0;
+	state = SC2;
 	sigma = du->genUniform(0.0, kc1);
 	printLog("CONTROLLER is SC2 will_be: %f\n", sigma);
 }
-else if (u[2] == 1.0 && xv == 3.0) // Train exits (3)
+else if (state == SC3 && xv == EXIT) // Train exits (3)
 {
-	u[2] = 0.0;
-	u[3] = 1.0;
+	state = SC4;
 	sigma = du->genUniform(0.0, kc2);
 	printLog("CONTROLLER is SC4 will_be %f\n", sigma);
 }
@@ -80,12 +71,12 @@ Event controller::lambda(double t) {
 //     %&Value% points to the variable which contains the value.
 //     %NroPort% is the port number (from 0 to n-1)
 
-if (u[1] == 1.0) {
-	y = 1;	// 1 = lower
+if (state == SC2) {
+	y = LOWER;
 	printLog("CONTROLLER - Lower!. c_time: %f\n", getTime());
 }
-else if (u[3] == 1.0) {	
-	y = 2;	// 2 = raise
+else if (state == SC4) {	
+	y = RAISE;
 	printLog("CONTROLLER - Raise!. c_time: %f\n", getTime());
 }
 return Event(&y,0);

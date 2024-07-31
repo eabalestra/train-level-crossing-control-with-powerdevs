@@ -17,9 +17,9 @@
 /** CONTROLLER **/
 // states
 #define SC1 1.0
-#define SC2 1.0
-#define SC3 1.0
-#define SC4 1.0
+#define SC2 2.0
+#define SC3 3.0
+#define SC4 4.0
 // output
 #define LOWER 1.0
 #define RAISE 2.0

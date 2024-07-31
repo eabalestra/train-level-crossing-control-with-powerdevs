@@ -8,17 +8,17 @@ Root-Coordinator
   Simulator
    {
     Path = tcg/train.h
-    Parameters = "2","5","123"
+    Parameters = "2","5",""
    }
   Simulator
    {
     Path = tcg/controller.h
-    Parameters = "1","1","123"
+    Parameters = "1","1",""
    }
   Simulator
    {
     Path = tcg/gate.h
-    Parameters = "1","1","2","123"
+    Parameters = "1","1","2",""
    }
   Simulator
    {
