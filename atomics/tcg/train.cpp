@@ -8,21 +8,22 @@ va_start(parameters,t);
 //      %Name% is the parameter name
 //	%Type% is the parameter type
 
-inf = 1e20;
+char *fvar;
 
-u[0] = 1.0; // far
-u[1] = 0.0; // near
-u[2] = 0.0; // inside
+fvar = va_arg(parameters,char*);
+kt1 = getScilabVar(fvar);
 
+fvar = va_arg(parameters,char*);
+kt2 = getScilabVar(fvar);
+
+fvar = va_arg(parameters,char*);
+int seed = (strlen(fvar)==0 ? (int)time(0)+rand() : getScilabVar(fvar)); // random seed
+
+inf = INF;
+state = FAR;
 sigma = inf;
 isTrainPresent = false;
-
 y = 0.0;
-
-kt1 = 2.0;
-kt2 = 5.0;
-
-int seed = 123;
 du = new UniformDistribution(seed);
 
 }
@@ -31,24 +32,21 @@ double train::ta(double t) {
 return sigma;
 }
 void train::dint(double t) {
-if (u[0] == 1.0)
+if (state == FAR)
 {
-	u[0] = 0.0;
-	u[1] = 1.0;
+	state = NEAR;
 	sigma = du->genUniform(kt1, kt2);
 	printLog("TRAIN is Near. will_be: %f\n", sigma);
 } 
-else if (u[1] == 1.0)
+else if (state == NEAR)
 {
-	u[1] = 0.0;
-	u[2] = 1.0;
+	state = INSIDE;
 	sigma = du->genUniform(0.0, kt2);
 	printLog("TRAIN is Inside. will_be: %f\n", sigma);
 } 
-else if (u[2] == 1.0) 
+else if (state == INSIDE)
 {
-	u[2] = 0.0;
-	u[0] = 1.0;
+	state = FAR;
 	sigma = inf;
 	printLog("TRAIN is Far. will_be: inf\n");
 	isTrainPresent = false;
@@ -60,10 +58,7 @@ void train::dext(Event x, double t) {
 //     'x.value' is the value (pointer to void)
 //     'x.port' is the port number
 //     'e' is the time elapsed since last transition
-
-//double xv;
-//xv=*(double*)(x.value);
-if (!isTrainPresent && u[0] == 1.0)
+if (!isTrainPresent && state == FAR)
 {
 	sigma = 0;
 	printLog("TRAIN is Coming. in: %f\n", sigma);
@@ -80,17 +75,17 @@ Event train::lambda(double t) {
 //     %&Value% points to the variable which contains the value.
 //     %NroPort% is the port number (from 0 to n-1)
 
-if (u[0] == 1.0) // aproach
+if (state == FAR) // aproach
 {
 	printLog("TRAIN - Approach! c_time: %f\n",getTime());
 	y = 1.0;
 }
-else if (u[1] == 1.0) // in
+else if (state == NEAR) // in
 {
 	printLog("TRAIN - In! c_time: %f\n",getTime());
 	y = 2.0;
 }
-else if (u[2] == 1.0) // exit
+else if (state == INSIDE) // exit
 {
 	printLog("TRAIN - Exit! c_time: %f\n",getTime());
 	y = 3.0;

@@ -8,6 +8,8 @@
 #include "stdarg.h"
 
 #include "tcg/random/uniform.h"
+#include "tcg/utils/constants.h"
+#include "time.h"
 
 
 class train: public Simulator { 
@@ -15,19 +17,11 @@ class train: public Simulator {
 // output variables
 // and parameters
 
-// states
-// u[0] = far
-// u[1] = near
-// u[2] = inside
-// sigma = time advance
-double u[3];
+double state;
 double sigma;
 
 // output
 double y;
-//1 aproach
-//2 in
-//3 exit
 
 // parameter
 double kt1;

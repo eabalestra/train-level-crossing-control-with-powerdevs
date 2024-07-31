@@ -35,7 +35,7 @@ Coupled
             Parameters
                 {
                 Inputs = Str; %Inputs ; Number of inputs
-                Format = Str; set xrange [0:%tf] @ set grid @ set title 'Plot' ; General Formatting (use @ as line break)
+                Format = Str; set xrange [0:%tf] @ set grid @ set title 'TCG' @ set xlabel 'Time' ; General Formatting (use @ as line break)
                 Format1 = Str; with linespoints title 'Train' lt 1 lc rgb 'blue' ; Formatting options for input 1
                 Format2 = Str; with linespoints title 'Gate' lt 2 lc rgb 'green' ; Formatting options for input 2
                 Format3 = Str;  ; Formatting options for input 3
@@ -48,7 +48,7 @@ Coupled
             Name = Train
             Ports = 1 ; 1
             Path = tcg/train.h
-            Description = Atomic DEVS model
+            Description = Atomic DEVS model for TRAIN of TCG
             Graphic
                 {
                 Position = -13155 ; -1710
@@ -59,6 +59,9 @@ Coupled
                 }
             Parameters
                 {
+                kt1 = Str; 2 ; 
+                kt2 = Str; 5 ; 
+                seed = Str;  ; an integer or empty string for a random seed
                 }
             }
         Atomic
@@ -66,7 +69,7 @@ Coupled
             Name = Controller
             Ports = 1 ; 1
             Path = tcg/controller.h
-            Description = Atomic DEVS model
+            Description = Atomic DEVS model for CONTROLLER of TCG
             Graphic
                 {
                 Position = -10530 ; -1260
@@ -77,6 +80,9 @@ Coupled
                 }
             Parameters
                 {
+                kc1 = Str; 1 ; 
+                kc2 = Str; 1 ; 
+                seed = Str;  ; an integer or empty string for a random seed
                 }
             }
         Atomic
@@ -84,7 +90,7 @@ Coupled
             Name = Gate
             Ports = 1 ; 1
             Path = tcg/gate.h
-            Description = Atomic DEVS model
+            Description = Atomic DEVS model for GATE of TCG
             Graphic
                 {
                 Position = -8730 ; -1260
@@ -95,6 +101,10 @@ Coupled
                 }
             Parameters
                 {
+                kg1 = Str; 1 ; 
+                kg2 = Str; 1 ; 
+                kg3 = Str; 2 ; 
+                seed = Str;  ; an integer or empty string for a random seed
                 }
             }
         Atomic
@@ -119,6 +129,65 @@ Coupled
                 Random seed = Str;  ; an integer or empty string for a random seed
                 }
             }
+        Atomic
+            {
+            Name = To Disk0
+            Ports = 1 ; 0
+            Path = sinks\to_disk.h
+            Description = Save the values (event,t) in a file.
+            Graphic
+                {
+                Position = -11805 ; -3480
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = %sinks%todisk.svg
+                }
+            Parameters
+                {
+                File = Str; output.csv ; file name
+                }
+            }
+        Point
+            {
+            ConectedLines = 2 ; 3 ; 8
+            ConectedExtrems = Org ; Org ; Org
+            Position = -12000 ; -1350
+            }
+        Point
+            {
+            ConectedLines = 4 ; 7 ; 8
+            ConectedExtrems = Org ; Org ; Org
+            Position = -12225 ; -1350
+            }
+        Line
+            {
+            Source = Cmp ;  5 ;  1 ; 0
+            Sink = Cmp ;  2 ;  1 ; -1
+            PointX = -13950 ; -13950 ; -13290
+            PointY = -1350 ; -1350 ; -1350
+            }
+        Line
+            {
+            Source = Cmp ;  1 ;  1 ; -1
+            Sink = Pnt ;  1 ; -1 ; 0
+            PointX = -6765 ; -12000 ; -12000
+            PointY = -1800 ; -1800 ; -1350
+            }
+        Line
+            {
+            Source = Pnt ;  1 ; -1 ; 0
+            Sink = Cmp ;  3 ;  1 ; -1
+            PointX = -12000 ; -11475 ; -11475 ; -10665
+            PointY = -1350 ; -1350 ; -900 ; -900
+            }
+        Line
+            {
+            Source = Cmp ;  2 ;  1 ; 0
+            Sink = Pnt ;  2 ; -1 ; 0
+            PointX = -12375 ; -12375 ; -12225
+            PointY = -1350 ; -1350 ; -1350
+            }
         Line
             {
             Source = Cmp ;  3 ;  1 ; 0
@@ -128,30 +197,23 @@ Coupled
             }
         Line
             {
-            Source = Cmp ;  2 ;  1 ; 0
-            Sink = Cmp ;  3 ;  1 ; -1
-            PointX = -12375 ; -11475 ; -11475 ; -10665
-            PointY = -1350 ; -1350 ; -900 ; -900
-            }
-        Line
-            {
-            Source = Cmp ;  1 ;  1 ; -1
-            Sink = Cmp ;  2 ;  1 ; 0
-            PointX = -6765 ; -11925 ; -11925 ; -12375
-            PointY = -1800 ; -1800 ; -1350 ; -1350
-            }
-        Line
-            {
             Source = Cmp ;  4 ;  1 ; 0
             Sink = Cmp ;  1 ;  2 ; -1
-            PointX = -7950 ; -7050 ; -7050 ; -6765
-            PointY = -900 ; -900 ; -1500 ; -1500
+            PointX = -7950 ; -7950 ; -7050 ; -7050 ; -6765
+            PointY = -900 ; -900 ; -900 ; -1500 ; -1500
             }
         Line
             {
-            Source = Cmp ;  5 ;  1 ; 0
-            Sink = Cmp ;  2 ;  1 ; -1
-            PointX = -13950 ; -13950 ; -13290
+            Source = Cmp ;  6 ;  1 ; -1
+            Sink = Pnt ;  2 ; -1 ; 0
+            PointX = -11940 ; -12225 ; -12225
+            PointY = -3150 ; -3150 ; -1350
+            }
+        Line
+            {
+            Source = Pnt ;  2 ; -1 ; 0
+            Sink = Pnt ;  1 ; -1 ; 0
+            PointX = -12225 ; -12000 ; -12000
             PointY = -1350 ; -1350 ; -1350
             }
         }

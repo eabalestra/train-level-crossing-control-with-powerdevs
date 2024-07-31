@@ -3,27 +3,32 @@ Root-Coordinator
   Simulator
    {
     Path = sinks/gnuplot.h
-    Parameters = 2.000000e+00,"set xrange [0:%tf] @ set grid @ set title 'Plot'","with linespoints title 'Train' lt 1 lc rgb 'blue'","with linespoints title 'Gate' lt 2 lc rgb 'green'","","",""
+    Parameters = 2.000000e+00,"set xrange [0:%tf] @ set grid @ set title 'TCG' @ set xlabel 'Time'","with linespoints title 'Train' lt 1 lc rgb 'blue'","with linespoints title 'Gate' lt 2 lc rgb 'green'","","",""
    }
   Simulator
    {
     Path = tcg/train.h
-    Parameters = 
+    Parameters = "2","5",""
    }
   Simulator
    {
     Path = tcg/controller.h
-    Parameters = 
+    Parameters = "1","1",""
    }
   Simulator
    {
     Path = tcg/gate.h
-    Parameters = 
+    Parameters = "1","1","2",""
    }
   Simulator
    {
     Path = random/normal_gen.h
     Parameters = "0","1","10",""
+   }
+  Simulator
+   {
+    Path = sinks\to_disk.h
+    Parameters = "output.csv"
    }
   EIC
    {
@@ -33,10 +38,11 @@ Root-Coordinator
    }
   IC
    {
-    (2,0);(3,0)
-    (1,0);(2,0)
-    (1,0);(0,0)
-    (3,0);(0,1)
     (4,0);(1,0)
+    (2,0);(3,0)
+    (3,0);(0,1)
+    (1,0);(5,0)
+    (1,0);(0,0)
+    (1,0);(2,0)
    }
  }

@@ -8,6 +8,8 @@
 #include "stdarg.h"
 
 #include "tcg/random/uniform.h"
+#include "time.h"
+#include "tcg/utils/constants.h"
 
 
 class gate: public Simulator { 

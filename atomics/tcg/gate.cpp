@@ -7,22 +7,27 @@ va_start(parameters,t);
 //where:
 //      %Name% is the parameter name
 //	%Type% is the parameter type
-inf = 1e20;
+char *fvar;
 
+fvar = va_arg(parameters,char*);
+kg1 = getScilabVar(fvar);
+
+fvar = va_arg(parameters,char*);
+kg2 = getScilabVar(fvar);
+
+fvar = va_arg(parameters,char*);
+kg3 = getScilabVar(fvar);
+
+fvar = va_arg(parameters,char*);
+int seed = (strlen(fvar)==0 ? (int)time(0)+rand() : getScilabVar(fvar)); // random seed
+
+inf = INF;
 u[0]=1.0;	// open
 u[1]=0.0;	// lowering
 u[2]=0.0;	// closed
 u[3]=0.0;	// raising
-
 sigma = inf;
-
 y = 0.0;
-
-kg1 = 1.0;
-kg2 = 1.0;
-kg3 = 2.0;
-
-int seed = 445566;
 du = new UniformDistribution(seed);
 
 }
