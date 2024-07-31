@@ -18,16 +18,10 @@ class gate: public Simulator {
 // and parameters
 
 //output
-// 1 is down
-// 2 is up
 double y;
 
 //states
-// u[0] is Open
-// u[1] is Lowering
-// u[2] is Closed
-// u[3] is Raising
-double u[4], sigma;
+double state, sigma;
 
 //params
 double inf;

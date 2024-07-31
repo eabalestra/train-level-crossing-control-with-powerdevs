@@ -22,10 +22,7 @@ fvar = va_arg(parameters,char*);
 int seed = (strlen(fvar)==0 ? (int)time(0)+rand() : getScilabVar(fvar)); // random seed
 
 inf = INF;
-u[0]=1.0;	// open
-u[1]=0.0;	// lowering
-u[2]=0.0;	// closed
-u[3]=0.0;	// raising
+state = OPEN;
 sigma = inf;
 y = 0.0;
 du = new UniformDistribution(seed);
@@ -36,15 +33,13 @@ double gate::ta(double t) {
 return sigma;
 }
 void gate::dint(double t) {
-if (u[1] == 1.0) // if state is lowering
+if (state == LOWERING)
 {
-	u[1] = 0.0;
-	u[2] = 1.0;
+	state = CLOSED;
 }
-else if (u[3] == 1.0)
+else if (state == RAISING)
 {
-	u[3] = 0.0;
-	u[0] = 1.0;
+	state = OPEN;
 }
 sigma = inf;
 }
@@ -56,19 +51,15 @@ void gate::dext(Event x, double t) {
 //     'e' is the time elapsed since last transition
 double xv;
 xv=*(double*)(x.value);
-if (u[0] == 1.0 && xv == 1.0) // 1 = lower
+if (state == OPEN && xv == LOWER)
 {				
-	u[0] = 0.0;
-	u[1] = 1.0;
-	//sigma = kg1;
+	state = LOWERING;
 	sigma = du->genUniform(0.0, kg1);
 	printLog("GATE is Lowering. will_be: %f\n", sigma);
 }
-else if (u[2] == 1.0 && xv == 2.0) // 2 = raise
+else if (state == CLOSED && xv == RAISE)
 {	
-	u[2] = 0.0;
-	u[3] = 1.0;
-	//sigma = kg3 - kg2;
+	state = RAISING;
 	sigma = du->genUniform(kg2, kg3);
 	printLog("GATE is Raising. will_be: %f\n", sigma);
 }
@@ -80,13 +71,13 @@ Event gate::lambda(double t) {
 //     %&Value% points to the variable which contains the value.
 //     %NroPort% is the port number (from 0 to n-1)
 
-if (u[1] == 1.0) {
-	y = 1;	// 1 = down
+if (state == LOWERING) {
+	y = DOWN;
 	printLog("GATE - Down!. c_time: %f\n",getTime());
 
 }
-else if (u[3] == 1.0) {	
-	y = 2;	// 2 = up
+else if (state == RAISING) {
+	y = UP;
 	printLog("GATE - Up!. c_time: %f\n",getTime());
 	printLog("\n\n");
 }

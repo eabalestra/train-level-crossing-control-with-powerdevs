@@ -27,9 +27,9 @@
 /** GATE **/
 // states
 #define OPEN 1.0
-#define LOWERING 1.0
-#define CLOSED 1.0
-#define RAISING 1.0
+#define LOWERING 2.0
+#define CLOSED 3.0
+#define RAISING 4.0
 // output
 #define DOWN 1.0
 #define UP 2.0
