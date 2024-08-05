@@ -38,13 +38,13 @@ epsilon = 1.0  # Margen de error aceptable
 best_case = abs(confidence_interval[1] - mu0)
 worst_case = abs(confidence_interval[0] - mu0)
 
-if confidence_interval[0] <= mu0 <= confidence_interval[1]:
-    if best_case > epsilon or worst_case > epsilon:
-        print("Se necesitan réplicas adicionales.")
-    else:
-        print("El modelo es aceptado.")
-else:
-    if best_case <= epsilon:
-        print("El modelo es aceptado.")
-    else:
-        print("Se necesitan réplicas adicionales.")
+#if confidence_interval[0] <= mu0 <= confidence_interval[1]:
+   # if best_case > epsilon or worst_case > epsilon:
+   #     print("Se necesitan réplicas adicionales.")
+  #  else:
+ #       print("El modelo es aceptado.")
+#else:
+    #if best_case <= epsilon:
+     #   print("El modelo es aceptado.")
+    #else:
+        #print("Se necesitan réplicas adicionales.")
